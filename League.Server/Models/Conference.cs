@@ -15,20 +15,10 @@ namespace League.Server.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Unique identifier for the conference
-        /// </summary>
-        [Required(ErrorMessage = "ConferenceId is required")]
-        [StringLength(50, ErrorMessage = "Conference ID cannot exceed 50 characters")]
-        [Display(Name = "Conference ID")]
-        public string? ConferenceId { get; set; }
-
-        /// <summary>
         /// Foreign key to the league this conference belongs to
         /// </summary>
-        [Required(ErrorMessage = "LeagueId is required")]
-        [StringLength(50, ErrorMessage = "League ID cannot exceed 50 characters")]
-        [Display(Name = "League ID")]
-        public string? LeagueId { get; set; }
+        [Required(ErrorMessage = "League ID is required")]
+        public int LeagueId { get; set; }
 
         /// <summary>
         /// Name of the conference
@@ -39,10 +29,23 @@ namespace League.Server.Models
         public string? Name { get; set; }
 
         /// <summary>
+        /// Abbreviation for the conference name
+        /// /// </summary>
+        [StringLength(10, ErrorMessage = "Abbreviation cannot exceed 10 characters")]
+        [Required(ErrorMessage = "Abbreviation is required")]
+        [Display(Name = "Abbreviation")]
+        public string? Abbreviation { get; set; }
+
+        /// <summary>
         /// Navigation property to the parent league
         /// </summary>
         [ForeignKey("LeagueId")]
-        [InverseProperty("Conferences")]
-        public League League { get; set; } = new();
+        public League League { get; set; }
+
+        /// <summary>
+        /// Collection of divisions in this conference
+        /// </summary>
+        [InverseProperty("Conference")]
+        public List<Division> Divisions { get; set; }
     }
 }
