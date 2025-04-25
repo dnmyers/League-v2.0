@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,18 +15,10 @@ namespace League.Server.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Unique identifier for the player
-        /// </summary>
-        [Required(ErrorMessage = "Player ID is required")]
-        [StringLength(50, ErrorMessage = "Player ID cannot exceed 50 characters")]
-        public string? PlayerId { get; set; }
-
-        /// <summary>
         /// Foreign key to the team the player belongs to
         /// </summary>
         [Required(ErrorMessage = "Team ID is required")]
-        [StringLength(50, ErrorMessage = "Team ID cannot exceed 50 characters")]
-        public string? TeamId { get; set; }
+        public int TeamId { get; set; }
 
         /// <summary>
         /// Player's jersey number
@@ -138,6 +129,6 @@ namespace League.Server.Models
         /// Navigation property to the player's team
         /// </summary>
         [ForeignKey("TeamId")]
-        public Team Team { get; set; } = new();
+        public Team Team { get; set; }
     }
 }

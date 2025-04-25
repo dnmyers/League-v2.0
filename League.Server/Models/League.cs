@@ -19,9 +19,8 @@ namespace League.Server.Models
         /// Unique identifier for the league
         /// </summary>
         [Required(ErrorMessage = "LeagueId is required")]
-        [StringLength(50, ErrorMessage = "League ID cannot exceed 50 characters")]
         [Display(Name = "League ID")]
-        public string? LeagueId { get; set; }
+        public int LeagueId { get; set; }
 
         /// <summary>
         /// Name of the league
@@ -30,6 +29,13 @@ namespace League.Server.Models
         [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters")]
         [Display(Name = "League Name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// Abbreviation for the league name
+        /// </summary>
+        [Required(ErrorMessage = "Abbreviation is required")]
+        [Display(Name = "Abbreviation")]
+        public string? Abbreviation { get; set; }
 
         /// <summary>
         /// Collection of conferences in this league

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,20 +15,10 @@ namespace League.Server.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Unique identifier for the team
-        /// </summary>
-        [Required(ErrorMessage = "TeamId is required")]
-        [StringLength(50, ErrorMessage = "Team ID cannot exceed 50 characters")]
-        [Display(Name = "Team ID")]
-        public string? TeamId { get; set; }
-
-        /// <summary>
         /// Foreign key to the division this team belongs to
         /// </summary>
-        [Required(ErrorMessage = "DivisionId is required")]
-        [StringLength(50, ErrorMessage = "Division ID cannot exceed 50 characters")]
-        [Display(Name = "Division ID")]
-        public string? DivisionId { get; set; }
+        [Required(ErrorMessage = "Division ID is required")]
+        public int DivisionId { get; set; }
 
         /// <summary>
         /// City or geographic location of the team
@@ -44,6 +33,9 @@ namespace League.Server.Models
         [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters")]
         [Display(Name = "Team Name")]
         public string? Name { get; set; }
+
+        [Required(ErrorMessage = "Abbreviation is required")]
+        public string? Abbreviation { get; set; }
 
         /// <summary>
         /// Number of games won
@@ -130,12 +122,12 @@ namespace League.Server.Models
         /// Navigation property to the division this team belongs to
         /// </summary>
         [ForeignKey("DivisionId")]
-        public Division Division { get; set; } = new();
+        public Division Division { get; set; }
 
         /// <summary>
         /// Collection of players on this team
         /// </summary>
         [InverseProperty("Team")]
-        public ICollection<Player> Players { get; set; } = [];
+        public ICollection<Player> Players { get; set; }
     }
 }
