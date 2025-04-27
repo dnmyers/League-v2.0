@@ -122,12 +122,12 @@ namespace League.Server.Models
         /// Navigation property to the division this team belongs to
         /// </summary>
         [ForeignKey("DivisionId")]
-        public Division Division { get; set; }
+        public Division? Division { get; set; }
 
         /// <summary>
         /// Collection of players on this team
         /// </summary>
         [InverseProperty("Team")]
-        public ICollection<Player> Players { get; set; }
+        public ICollection<Player>? Players { get; set; }
     }
 }

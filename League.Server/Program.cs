@@ -4,17 +4,17 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-
 // Add services to the container.
 services.AddDistributedMemoryCache();
-services.AddSession(options => {
+services.AddSession(options =>
+{
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
-services.AddDbContext<LeagueContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
+services.AddDbContext<LeagueDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
 );
 
 services.AddControllers();
@@ -31,9 +31,14 @@ app.UseDefaultFiles();
 app.MapStaticAssets();
 
 // Configure the HTTP request pipeline.
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -50,13 +55,13 @@ static void CreateDbIfNotExists(IHost host)
 {
     using var scope = host.Services.CreateScope();
     var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<LeagueContext>();
+    var context = services.GetRequiredService<LeagueDbContext>();
 
     try
     {
         DbInitializer.Initialize(context);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         throw new Exception($"An error occurred creating the DB: {ex.Message}", ex);
     }

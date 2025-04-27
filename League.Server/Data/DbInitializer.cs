@@ -4,8 +4,7 @@ namespace League.Server.Data
 {
     public static class DbInitializer
     {
-
-        public static void Initialize(LeagueContext context)
+        public static void Initialize(LeagueDbContext context)
         {
             Console.WriteLine("Initializing Database...");
 
@@ -15,7 +14,7 @@ namespace League.Server.Data
             Console.WriteLine("context.Database.EnsureCreated()...");
 
             // Look for any Teams.
-            if(context.Teams.Any())
+            if (context.Teams.Any())
             {
                 Console.WriteLine("Teams exist...");
                 return; // DB has been seeded
@@ -32,7 +31,7 @@ namespace League.Server.Data
                 },
             };
 
-            foreach(var s in Leagues)
+            foreach (var s in Leagues)
             {
                 context.Leagues.Add(s);
             }
@@ -56,7 +55,7 @@ namespace League.Server.Data
                 }
             };
 
-            foreach(Conference c in Conferences)
+            foreach (Conference c in Conferences)
             {
                 context.Conferences.Add(c);
             }
@@ -45889,7 +45888,6 @@ namespace League.Server.Data
 
             context.Players.AddRange(Players);
             context.SaveChanges();
-
         }
     }
 }
