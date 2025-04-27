@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace League.Server.Data
 {
-    public class LeagueContext : DbContext
+    public class LeagueDbContext : DbContext
     {
-        public LeagueContext(DbContextOptions<LeagueContext> options)
+        public LeagueDbContext(DbContextOptions<LeagueDbContext> options)
             : base(options) { }
 
         public DbSet<Models.League> Leagues { get; set; }

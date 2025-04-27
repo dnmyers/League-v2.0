@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace League.Server.Migrations
 {
-    [DbContext(typeof(LeagueContext))]
+    [DbContext(typeof(LeagueDbContext))]
     [Migration("20250425023535_InitialMigration1")]
     partial class InitialMigration1
     {

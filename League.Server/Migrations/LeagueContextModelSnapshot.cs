@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace League.Server.Migrations
 {
-    [DbContext(typeof(LeagueContext))]
+    [DbContext(typeof(LeagueDbContext))]
     partial class LeagueContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -35,12 +35,12 @@ namespace League.Server.Models
         /// Navigation property to the parent conference
         /// </summary>
         [ForeignKey("ConferenceId")]
-        public Conference Conference { get; set; }
+        public Conference? Conference { get; set; }
 
         /// <summary>
         /// Collection of teams in this division
         /// </summary>
         [InverseProperty("Division")]
-        public List<Team> Teams { get; set; }
+        public List<Team>? Teams { get; set; }
     }
 }

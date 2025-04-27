@@ -129,6 +129,6 @@ namespace League.Server.Models
         /// Navigation property to the player's team
         /// </summary>
         [ForeignKey("TeamId")]
-        public Team Team { get; set; }
+        public Team? Team { get; set; }
     }
 }
