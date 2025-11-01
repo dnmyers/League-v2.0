@@ -60,6 +60,7 @@ public class Player : BaseEntity, ISoftDeletable
     public string? DeletedByUserId { get; set; }
 
 }
+```
 
 3. Update database schema to include soft delete columns
     - Add `IsDeleted`, `DeletedAt`, `DeletedReason`, and `DeletedByUserId` fields to relevant tables
